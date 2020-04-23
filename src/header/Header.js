@@ -1,11 +1,11 @@
 import React from 'react';
 
+import './style.css';
 
-
-function Header(){
+function Header(props) {
     return (
         <div className="header">
-            Przykladowy header
+            Task: {props.task}
         </div>
     )
 }
