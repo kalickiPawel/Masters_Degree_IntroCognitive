@@ -16,7 +16,7 @@ const App = () => {
 
     let tasks = ["Tresc 1", "Tresc 2"];
 
-    if (seconds < 5) {
+    if (seconds < 3) {
 
       //Display image
       //var img = document.createElement("img");
