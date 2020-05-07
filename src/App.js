@@ -12,10 +12,10 @@ const App = () => {
   let task, image;
 
   for (let i = 0; i < 75; i++) {
-    
+
 
     let tasks = ["Tresc 1", "Tresc 2"];
-    
+
     if (seconds < 5) {
 
       //Display image
@@ -30,7 +30,6 @@ const App = () => {
     }
   }
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       setSeconds(seconds => seconds + 1);
@@ -38,17 +37,13 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
-  
-
-
-
   return (
     <div className="App">
       <header className="App-header">
         <Header task={task} />
         {seconds} seconds have elapsed since mounting.
-        <Image name={image} />
-        <Question name="Jakub" />
+        <Image />
+        <Question />
       </header>
     </div>
   )

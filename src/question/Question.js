@@ -2,10 +2,10 @@ import React from 'react';
 
 
 
-function Question(props){
+function Question(props) {
     return (
         <div className="question">
-            Hello {props.name}
+
         </div>
     )
 }
