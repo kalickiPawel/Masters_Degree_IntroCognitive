@@ -96,5 +96,6 @@ export default App;
 //V TODO: onclick answerComponent and change currentChoice in parent component
 // TODO: remove viewed images (how to motivate to view all images from base); 
 //       random image_id from images which stay
-// TODO: how indentify the user user (1 user must to view all images) e.g. images counter?
+// TODO: how identify the user user (1 user must to view all images) e.g. images counter?
+// TODO: how identify the image with current attempt
 // TODO: how read survey data
