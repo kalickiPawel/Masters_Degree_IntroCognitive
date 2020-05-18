@@ -49,7 +49,7 @@ class App extends React.Component {
     }
   }
 
-  componentWillUpdate() {
+  componentDidUpdate() {
     if (this.state.time > 3000) {
       this.stopTimer();
       this.setState({ currentChoice: 'answersComponent' })
@@ -67,7 +67,7 @@ class App extends React.Component {
     let task;
     let choice = 0;
 
-    if (this.state.currentChoice == 'imageComponent') {
+    if (this.state.currentChoice === 'imageComponent') {
       task = 'Rate the image below:'
       choice = <div><Header task={task} />{Math.floor(this.state.time / 1000) + 1} seconds have elapsed since mounting.</div>;
     }
