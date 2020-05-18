@@ -4,49 +4,43 @@ import './App.css';
 import Header from './header';
 import Image from './image';
 import Question from './question';
+import Timer from './timer';
+
+const image_id = 0;
+
+const QUIZ_STATES = {
+  imageComponent: <Image image_id={image_id} />,
+  answersComponent: <Question />
+};
 
 
-
-const App = () => {
-  const [seconds, setSeconds] = useState(0);
-  let task, image;
-
-  for (let i = 0; i < 75; i++) {
-
-
-    let tasks = ["Tresc 1", "Tresc 2"];
-
-    if (seconds < 3) {
-
-      //Display image
-      //var img = document.createElement("img");
-      //img.src = './koperty/BlackBlue.png';
-      //image = img;
-    }
-    else {
-      task = tasks[1];
-      //sprawdza czy przycisk zostal wcisniety i ustawia czas na 0
-      setSeconds(0);
+class App extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      currentChoice: 'imageComponent'
     }
   }
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds(seconds => seconds + 1);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Header task={task} />
-        {seconds} seconds have elapsed since mounting.
-        <Image />
-        <Question />
-      </header>
-    </div>
-  )
+  render() {
+    console.log(Timer.time);
+    const task = "Tesc 1";
+    const seconds = 2;
+    const image_id = 10;
+    return (
+      <div>
+        <div className="App">
+          <header className="App-header">
+            <Header task={task} />
+            {seconds} seconds have elapsed since mounting.
+            <Timer />
+            {QUIZ_STATES[this.state.currentChoice]}
+          </header>
+        </div>
+      </div>
+    );
+  }
 }
+
 
 export default App;

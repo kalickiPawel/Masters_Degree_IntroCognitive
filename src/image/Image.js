@@ -2,6 +2,7 @@ import React from 'react';
 
 
 class Image extends React.Component {
+
     constructor(props) {
         super();
         this.state = {
@@ -13,17 +14,10 @@ class Image extends React.Component {
         return r.keys().map(r);
     }
 
-    componentDidMount() {
-        console.log(this.state.images);
-    }
-
     render() {
-        const min = 0;
-        const max = this.state.images.length;
-        const rand = Math.floor(min + Math.random() * (max - min));
         return (
             <div className="image" >
-                <img src={this.state.images[rand]} />
+                <img src={this.state.images[this.props.image_id]} />
             </div>
         );
     }

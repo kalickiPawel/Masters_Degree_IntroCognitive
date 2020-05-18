@@ -9,6 +9,7 @@
     "bootstrap": "^4.4.1",
     "fs": "0.0.1-security",
     "fs-react": "0.0.4",
+    "pretty-ms": "^7.0.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
