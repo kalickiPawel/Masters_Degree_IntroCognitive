@@ -5,7 +5,7 @@ import Header from './header';
 import Image from './image';
 import Question from './question';
 
-const QUIZ_STATES = {
+let QUIZ_STATES = {
   imageComponent: <Image />,
   answersComponent: <Question />
 };
@@ -52,15 +52,16 @@ class App extends React.Component {
   componentDidUpdate() {
     if (this.state.time > 3000) {
       this.stopTimer();
-      this.setState({ currentChoice: 'answersComponent' })
       this.resetTimer();
+      this.setState({ currentChoice: 'answersComponent' })
     }
   }
 
   handler() {
     this.setState({
       currentChoice: 'imageComponent'
-    })
+    });
+    this.startTimer();
   }
 
   render() {
@@ -74,6 +75,7 @@ class App extends React.Component {
     else {
       task = 'Rate the previous image:'
       choice = <div><Header task={task} /></div>;
+      QUIZ_STATES[this.state.currentChoice] = <Question handler={this.handler} />
     }
     return (
       <div>
@@ -91,7 +93,7 @@ class App extends React.Component {
 
 export default App;
 
-// TODO: onclick answerComponent and change currentChoice in parent component
+//V TODO: onclick answerComponent and change currentChoice in parent component
 // TODO: remove viewed images (how to motivate to view all images from base); 
 //       random image_id from images which stay
 // TODO: how indentify the user user (1 user must to view all images) e.g. images counter?
