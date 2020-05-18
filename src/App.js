@@ -5,13 +5,10 @@ import Header from './header';
 import Image from './image';
 import Question from './question';
 
-const image_id = 0;
-
 const QUIZ_STATES = {
-  imageComponent: <Image image_id={image_id} />,
+  imageComponent: <Image />,
   answersComponent: <Question />
 };
-
 
 class App extends React.Component {
   constructor(props) {

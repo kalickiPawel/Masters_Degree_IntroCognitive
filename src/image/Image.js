@@ -15,9 +15,10 @@ class Image extends React.Component {
     }
 
     render() {
+        const image_id = Math.floor(0 + Math.random() * (75 - 0));
         return (
             <div className="image" >
-                <img src={this.state.images[this.props.image_id]} />
+                <img src={this.state.images[image_id]} />
             </div>
         );
     }
