@@ -57,12 +57,19 @@ class App extends React.Component {
 
   render() {
     const task = "Tesc 1";
+    let choice = 0;
+    if (this.state.currentChoice == 'imageComponent') {
+      choice = <div>{this.state.time} seconds have elapsed since mounting.</div>;
+    }
+    else {
+      choice = <div></div>;
+    }
     return (
       <div>
         <div className="App">
           <header className="App-header">
             <Header task={task} />
-            {this.state.time} seconds have elapsed since mounting.
+            {choice}
             {QUIZ_STATES[this.state.currentChoice]}
           </header>
         </div>
