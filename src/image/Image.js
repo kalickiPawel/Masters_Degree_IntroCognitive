@@ -15,10 +15,10 @@ class Image extends React.Component {
     }
 
     render() {
-        const image_id = Math.floor(0 + Math.random() * (75 - 0));
+        const image_id = Math.floor(0 + Math.random() * ((this.state.images.length - 1) - 0));
         return (
             <div className="image" >
-                <img src={this.state.images[image_id]} />
+                <img src={this.state.images[image_id]} alt={image_id} />
             </div>
         );
     }
