@@ -12,16 +12,19 @@ class Question extends React.Component {
         const timestamp = Date.now();
         console.log(new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timestamp));
         console.log(value.index + 1);
-
+        this.props.handler();
     }
 
     render() {
         return (
             <div className="question">
-                {this.state.answer.map((value, index) => {
-                    return <Button className=".ml-1" value={index} variant="primary" size="lg" onClick={e => this.handleClick(e, { index })}>{value}</Button>
-                })
-                }
+                <hr></hr>
+                <ul className="list-group list-group-horizontal">
+                    {this.state.answer.map((value, index) => {
+                        return <li className="list-group-item" key={index}><Button className=".ml-1" value={index} variant="primary" size="lg" onClick={e => this.handleClick(e, { index })}>{value}</Button></li>
+                    })
+                    }
+                </ul>
             </div >
         );
     }

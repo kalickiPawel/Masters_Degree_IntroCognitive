@@ -19,6 +19,8 @@ class App extends React.Component {
       start: 0,
       currentChoice: 'imageComponent'
     }
+
+    this.handler = this.handler.bind(this)
     this.startTimer = this.startTimer.bind(this)
     this.stopTimer = this.stopTimer.bind(this)
     this.resetTimer = this.resetTimer.bind(this)
@@ -55,20 +57,28 @@ class App extends React.Component {
     }
   }
 
+  handler() {
+    this.setState({
+      currentChoice: 'imageComponent'
+    })
+  }
+
   render() {
-    const task = "Tesc 1";
+    let task;
     let choice = 0;
+
     if (this.state.currentChoice == 'imageComponent') {
-      choice = <div>{this.state.time} seconds have elapsed since mounting.</div>;
+      task = 'Rate the image below:'
+      choice = <div><Header task={task} />{Math.floor(this.state.time / 1000) + 1} seconds have elapsed since mounting.</div>;
     }
     else {
-      choice = <div></div>;
+      task = 'Rate the previous image:'
+      choice = <div><Header task={task} /></div>;
     }
     return (
       <div>
         <div className="App">
           <header className="App-header">
-            <Header task={task} />
             {choice}
             {QUIZ_STATES[this.state.currentChoice]}
           </header>
