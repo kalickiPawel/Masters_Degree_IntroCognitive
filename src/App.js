@@ -17,7 +17,8 @@ class App extends React.Component {
       time: 0,
       isOn: false,
       start: 0,
-      currentChoice: 'imageComponent'
+      currentChoice: 'imageComponent',
+      data: []
     }
 
     this.handler = this.handler.bind(this)
@@ -75,7 +76,7 @@ class App extends React.Component {
     else {
       task = 'Rate the previous image:'
       choice = <div><Header task={task} /></div>;
-      QUIZ_STATES[this.state.currentChoice] = <Question handler={this.handler} />
+      QUIZ_STATES[this.state.currentChoice] = <Question handler={this.handler} datas={this.state.data} />
     }
     return (
       <div>
