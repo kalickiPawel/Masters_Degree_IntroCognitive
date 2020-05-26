@@ -1,4 +1,5 @@
 import React from 'react';
+import requireContext from 'require-context.macro';
 
 
 class Image extends React.Component {
@@ -6,7 +7,7 @@ class Image extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            images: this.importAll(require.context('../koperty/', false, /\.(png|jpe?g|svg)$/))
+            images: this.importAll(requireContext('../koperty/', false, /\.(png|jpe?g|svg)$/))
         };
     }
 
