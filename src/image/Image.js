@@ -16,6 +16,7 @@ class Image extends React.Component {
 
     render() {
         const image_id = Math.floor(0 + Math.random() * ((this.state.images.length - 1) - 0));
+        console.log(image_id);
         return (
             <div className="image" >
                 <img src={this.state.images[image_id]} alt={image_id} />
