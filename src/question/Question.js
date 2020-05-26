@@ -24,7 +24,6 @@ class Question extends React.Component {
     handleDownloadClick(e) {
         const filename = 'test.txt';
         console.log("sfgsf");
-        const data = "dfjghjgdfshjhlkgdhfg";
         this.console_save(this.state.data, [filename]);
     }
 
