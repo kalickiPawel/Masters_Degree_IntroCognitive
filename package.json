@@ -2,6 +2,7 @@
   "name": "wdk_inz_wystarczy_test",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kalickiPawel.github.io/Masters_Degree_IntroCognitive/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
