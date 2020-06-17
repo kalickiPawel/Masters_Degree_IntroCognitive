@@ -9,22 +9,14 @@ class Question extends React.Component {
             datas: []
         };
         this.handleClick = this.handleClick.bind(this);
-        this.handleDownloadClick = this.handleDownloadClick.bind(this);
     }
     handleClick(e, value) {
-        // console.log(e);
-
         const timestamp = Date.now();
-        console.log(new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timestamp));
+        let date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timestamp)
+        console.log(date);
         console.log("ans: " + (value.index + 1) + "\nimage_id: " + this.props.image_id);
-
-        this.props.handler();
-    }
-
-    handleDownloadClick(e) {
-        const filename = 'test.txt';
-        console.log("sfgsf");
-        this.console_save(this.state.data, [filename]);
+        
+        this.props.handler(value.index + 1, date);
     }
 
     console_save = (data, filename) => {
@@ -61,7 +53,6 @@ class Question extends React.Component {
                     })
                     }
                 </ul>
-                <Button className=".ml-1" variant="danger" size="lg" onClick={this.handleDownloadClick}></Button>
             </div >
         );
     }

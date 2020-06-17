@@ -22,8 +22,10 @@ class App extends React.Component {
 
       currentChoice: 'startComponent',
       image_id: 0,
-      arrayOfIdx: []
-
+      arrayOfIdx: [],
+      arrayOfAnswers: [],
+      arrayOfDates: [],
+      userName: 0
     }
 
     this.handler = this.handler.bind(this)
@@ -44,13 +46,16 @@ class App extends React.Component {
       time: Date.now() - this.state.start
     }), 1);
   }
+
   stopTimer() {
     this.setState({ isOn: false })
     clearInterval(this.timer)
   }
+
   resetTimer() {
     this.setState({ time: 0, isOn: false })
   }
+
   componentDidMount() {
     if (this.state.currentChoice === 'imageComponent') {
       this.startTimer();
@@ -60,7 +65,8 @@ class App extends React.Component {
   createUser(){
         this.setState({
         ...this.state,
-        currentChoice: 'imageComponent'
+        currentChoice: 'imageComponent',
+        userName: this.state.userName + 1
     });
     this.startTimer();
   }
@@ -73,12 +79,15 @@ class App extends React.Component {
     }
   }
 
-  handler() {
+  handler(answer, date) {
     this.setState({
-      currentChoice: 'imageComponent'
+      currentChoice: 'imageComponent',
+      arrayOfAnswers: [...this.state.arrayOfAnswers, answer],
+      arrayOfDates: [...this.state.arrayOfDates, date]
     });
     this.startTimer();
   }
+
   handlerImage(image_id){
 
       this.setState({
@@ -94,12 +103,11 @@ class App extends React.Component {
 
     if (this.state.currentChoice === 'startComponent') {
       choice = <div>Hello<Button className=".ml-1"  variant="primary" size="lg" onClick={this.createUser}>START</Button></div>;
-
     }
     else if (this.state.currentChoice === 'imageComponent') {
                   task = 'Rate the image below:'
                   choice = <div><Header task={task} />{Math.floor(this.state.time / 1000) + 1} seconds have elapsed since mounting.</div>;
-                QUIZ_STATES[this.state.currentChoice] = <Image handler={this.handlerImage} arrayOfIdx={this.state.arrayOfIdx}/>
+                QUIZ_STATES[this.state.currentChoice] = <Image handler={this.handlerImage} arrayOfIdx={this.state.arrayOfIdx} arrayOfAnswers={this.state.arrayOfAnswers} userName={this.state.userName} arrayOfDates={this.state.arrayOfDates}/>
                 }
     else {
       task = 'Rate the previous image:'
