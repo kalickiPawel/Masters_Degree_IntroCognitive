@@ -19,9 +19,11 @@ class App extends React.Component {
       time: 0,
       isOn: false,
       start: 0,
+
       currentChoice: 'startComponent',
       image_id: 0,
       arrayOfIdx: []
+
     }
 
     this.handler = this.handler.bind(this)
@@ -102,7 +104,9 @@ class App extends React.Component {
     else {
       task = 'Rate the previous image:'
       choice = <div><Header task={task} /></div>;
+
       QUIZ_STATES[this.state.currentChoice] = <Question handler={this.handler} image_id={this.state.image_id} />
+
     }
     return (
       <div>
@@ -120,9 +124,9 @@ class App extends React.Component {
 
 export default App;
 
-//V TODO: onclick answerComponent and change currentChoice in parent component
 // TODO: remove viewed images (how to motivate to view all images from base); 
 //       random image_id from images which stay
 // TODO: how identify the user user (1 user must to view all images) e.g. images counter?
+//       who I am and input field
 // TODO: how identify the image with current attempt
-// TODO: how read survey data
+// TODO: how read survey data -> local with csv
