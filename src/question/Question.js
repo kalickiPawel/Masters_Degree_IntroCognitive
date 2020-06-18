@@ -13,8 +13,6 @@ class Question extends React.Component {
     handleClick(e, value) {
         const timestamp = Date.now();
         let date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(timestamp)
-        console.log(date);
-        console.log("ans: " + (value.index + 1) + "\nimage_id: " + this.props.image_id);
         
         this.props.handler(value.index + 1, date);
     }

@@ -5,7 +5,7 @@ import Header from './header';
 import Image from './image';
 import Question from './question';
 
-import { Button } from 'react-bootstrap';
+import {Button, Form, Col} from 'react-bootstrap';
 
 let QUIZ_STATES = {
   imageComponent: <Image />,
@@ -25,11 +25,12 @@ class App extends React.Component {
       arrayOfIdx: [],
       arrayOfAnswers: [],
       arrayOfDates: [],
-      userName: 0
+      userName: '',
     }
 
     this.handler = this.handler.bind(this)
     this.handlerImage = this.handlerImage.bind(this)
+    this.handleChange = this.handleChange.bind(this);
     this.startTimer = this.startTimer.bind(this)
     this.stopTimer = this.stopTimer.bind(this)
     this.resetTimer = this.resetTimer.bind(this)
@@ -62,11 +63,11 @@ class App extends React.Component {
     }
   }
 
-  createUser(){
-        this.setState({
-        ...this.state,
-        currentChoice: 'imageComponent',
-        userName: this.state.userName + 1
+  createUser(event){
+    event.preventDefault();
+    this.setState({
+      ...this.state,
+      currentChoice: 'imageComponent',
     });
     this.startTimer();
   }
@@ -89,20 +90,32 @@ class App extends React.Component {
   }
 
   handlerImage(image_id){
-
       this.setState({
         image_id: image_id,
         arrayOfIdx: [...this.state.arrayOfIdx, image_id]
       });
+  }
 
+  handleChange(event){
+    this.setState({userName: event.target.value});
   }
 
   render() {
     let task;
     let choice = 0;
-
+    
     if (this.state.currentChoice === 'startComponent') {
-      choice = <div>Hello<Button className=".ml-1"  variant="primary" size="lg" onClick={this.createUser}>START</Button></div>;
+      choice = <div>
+        Hello
+        <Form onSubmit={this.createUser}>
+          <Form.Row>
+            <Col>
+            <input className="form-control" type="text" placeholder="Nick name" value={this.state.userName} onChange={this.handleChange} required/>
+            </Col>
+            <Button type="submit">START</Button>
+          </Form.Row>
+        </Form>
+      </div>
     }
     else if (this.state.currentChoice === 'imageComponent') {
                   task = 'Rate the image below:'
