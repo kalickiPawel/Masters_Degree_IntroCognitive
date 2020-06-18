@@ -16,26 +16,21 @@ class Image extends React.Component {
         return r.keys().map(r);
     }
 
-    componentDidMount()
-    {
-    let value = Math.floor(0 + Math.random() * ((this.state.images.length - 1) - 0));
-    
-    console.log(this.props.userName);
-    console.log(this.props.arrayOfAnswers);
-    console.log(this.props.arrayOfIdx);
-    console.log(this.props.arrayOfDates);
-    console.log(this.props.counter);
-    if(this.props.arrayOfIdx.includes(value))
-       value = Math.floor(0 + Math.random() * ((this.state.images.length - 1) - 0));
-    if(this.props.counter === this.state.images.length)
-    {
-        console.log("the end");
+    componentDidMount() {
+        let value = Math.floor(0 + Math.random() * ((this.state.images.length - 1) - 0));
+
+        console.log("User: " + this.props.userName + "\nAnswers: " + this.props.arrayOfAnswers + "\nImages: " + this.props.arrayOfIdx + "\nTimestamp: " + this.props.arrayOfDates);
         console.log(this.props.counter);
-    }
-    this.props.handler(value);
-    this.setState({
-        image_id: value
-    });
+        if (this.props.arrayOfIdx.includes(value))
+            value = Math.floor(0 + Math.random() * ((this.state.images.length - 1) - 0));
+        if (this.props.counter === this.state.images.length) {
+            console.log("the end");
+            console.log(this.props.counter);
+        }
+        this.props.handler(value);
+        this.setState({
+            image_id: value
+        });
     }
 
     render() {
