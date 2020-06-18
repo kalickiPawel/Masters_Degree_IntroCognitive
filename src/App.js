@@ -26,6 +26,7 @@ class App extends React.Component {
       arrayOfAnswers: [],
       arrayOfDates: [],
       userName: '',
+      counter: 0
     }
 
     this.handler = this.handler.bind(this)
@@ -84,7 +85,8 @@ class App extends React.Component {
     this.setState({
       currentChoice: 'imageComponent',
       arrayOfAnswers: [...this.state.arrayOfAnswers, answer],
-      arrayOfDates: [...this.state.arrayOfDates, date]
+      arrayOfDates: [...this.state.arrayOfDates, date],
+      counter: this.state.counter + 1
     });
     this.startTimer();
   }
@@ -120,7 +122,7 @@ class App extends React.Component {
     else if (this.state.currentChoice === 'imageComponent') {
                   task = 'Rate the image below:'
                   choice = <div><Header task={task} />{Math.floor(this.state.time / 1000) + 1} seconds have elapsed since mounting.</div>;
-                QUIZ_STATES[this.state.currentChoice] = <Image handler={this.handlerImage} arrayOfIdx={this.state.arrayOfIdx} arrayOfAnswers={this.state.arrayOfAnswers} userName={this.state.userName} arrayOfDates={this.state.arrayOfDates}/>
+                QUIZ_STATES[this.state.currentChoice] = <Image handler={this.handlerImage} arrayOfIdx={this.state.arrayOfIdx} arrayOfAnswers={this.state.arrayOfAnswers} userName={this.state.userName} arrayOfDates={this.state.arrayOfDates} counter={this.state.counter}/>
                 }
     else {
       task = 'Rate the previous image:'

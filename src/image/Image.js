@@ -8,8 +8,7 @@ class Image extends React.Component {
         this.state = {
 
             images: this.importAll(require.context('../koperty/', false, /\.(png|jpe?g|svg)$/)),
-            image_id: 0
-
+            image_id: 0,
         };
     }
 
@@ -25,15 +24,18 @@ class Image extends React.Component {
     console.log(this.props.arrayOfAnswers);
     console.log(this.props.arrayOfIdx);
     console.log(this.props.arrayOfDates);
-    
+    console.log(this.props.counter);
     if(this.props.arrayOfIdx.includes(value))
        value = Math.floor(0 + Math.random() * ((this.state.images.length - 1) - 0));
-    if(this.state.images.length === this.props.arrayOfIdx.length)
-        console.log("Koniec");
+    if(this.props.counter === this.state.images.length)
+    {
+        console.log("the end");
+        console.log(this.props.counter);
+    }
     this.props.handler(value);
     this.setState({
-         image_id: value
-              });
+        image_id: value
+    });
     }
 
     render() {
