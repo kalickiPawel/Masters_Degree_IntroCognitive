@@ -5,7 +5,7 @@ class Question extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            answer: ["wspaniały", "dobry", "przeciętny", "słaby", "zły"],
+            answer: ["Bardzo drażniący", "Drażniący", "Neutralny", "Przyjazny", "Bardzo przyjazny"],
             datas: []
         };
         this.handleClick = this.handleClick.bind(this);
