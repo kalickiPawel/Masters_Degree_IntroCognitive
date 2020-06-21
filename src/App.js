@@ -22,14 +22,13 @@ class App extends React.Component {
       isOn: false,
       start: 0,
 
-      images: this.importAll(require.context('./koperty/', false, /\.(png|jpe?g|svg)$/)),
-
       currentChoice: 'startComponent',
       image_id: 0,
       arrayOfIdx: [],
       arrayOfAnswers: [],
       arrayOfDates: [],
       userName: '',
+      imageLength: 0
     }
 
     this.handler = this.handler.bind(this)
@@ -61,15 +60,10 @@ class App extends React.Component {
     this.setState({ time: 0, isOn: false })
   }
 
-  importAll(r) {
-    return r.keys().map(r);
-  }
-
   componentDidMount() {
     if (this.state.currentChoice === 'imageComponent') {
       this.startTimer();
     }
-    console.log("Images count: " + this.state.images.length);
   }
 
   createUser(event) {
@@ -90,7 +84,7 @@ class App extends React.Component {
   }
 
   handler(answer, date) {
-    if (this.state.arrayOfAnswers.length === (this.state.images.length - 1)) {
+    if (this.state.arrayOfAnswers.length === (this.state.imageLength - 1)) {
       this.setState({
         currentChoice: 'endComponent',
         arrayOfAnswers: [...this.state.arrayOfAnswers, answer],
@@ -107,10 +101,11 @@ class App extends React.Component {
     }
   }
 
-  handlerImage(image_id) {
+  handlerImage(image_id, imageLength) {
     this.setState({
       image_id: image_id,
-      arrayOfIdx: [...this.state.arrayOfIdx, image_id]
+      arrayOfIdx: [...this.state.arrayOfIdx, image_id],
+      imageLength: imageLength
     });
   }
 
@@ -137,8 +132,8 @@ class App extends React.Component {
     }
     else if (this.state.currentChoice === 'imageComponent') {
       task = 'Rate the image below:'
-      choice = <div><Header task={task} countOfAnswers={this.state.arrayOfAnswers.length + 1} lengthOfImages={this.state.images.length} />{Math.floor(this.state.time / 1000) + 1} seconds have elapsed since mounting.</div>;
-      QUIZ_STATES[this.state.currentChoice] = <Image handler={this.handlerImage} arrayOfIdx={this.state.arrayOfIdx} images={this.state.images} />
+      choice = <div><Header task={task} countOfAnswers={this.state.arrayOfAnswers.length + 1} lengthOfImages={this.state.imageLength} />{Math.floor(this.state.time / 1000) + 1} seconds have elapsed since mounting.</div>;
+      QUIZ_STATES[this.state.currentChoice] = <Image handler={this.handlerImage} arrayOfIdx={this.state.arrayOfIdx} />
     }
     else if (this.state.currentChoice === 'endComponent') {
       choice = <div>Pobierz wyniki</div>
@@ -146,7 +141,7 @@ class App extends React.Component {
     }
     else {
       task = 'Rate the previous image:'
-      choice = <div><Header task={task} countOfAnswers={this.state.arrayOfAnswers.length + 1} lengthOfImages={this.state.images.length} /></div>;
+      choice = <div><Header task={task} countOfAnswers={this.state.arrayOfAnswers.length + 1} lengthOfImages={this.state.imageLength} /></div>;
 
       QUIZ_STATES[this.state.currentChoice] = <Question handler={this.handler} image_id={this.state.image_id} />
     }
