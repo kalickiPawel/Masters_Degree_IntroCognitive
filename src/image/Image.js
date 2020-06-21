@@ -6,9 +6,8 @@ class Image extends React.Component {
     constructor(props) {
         super();
         this.state = {
-
-            images: this.importAll(require.context('../koperty/', false, /\.(png|jpe?g|svg)$/)),
             image_id: 0,
+            images: this.importAll(require.context('../koperty/', false, /\.(png|jpe?g|svg)$/)),
         };
     }
 
@@ -17,17 +16,13 @@ class Image extends React.Component {
     }
 
     componentDidMount() {
-        let value = Math.floor(0 + Math.random() * ((this.state.images.length - 1) - 0));
-
-        console.log("User: " + this.props.userName + "\nAnswers: " + this.props.arrayOfAnswers + "\nImages: " + this.props.arrayOfIdx + "\nTimestamp: " + this.props.arrayOfDates);
-        console.log(this.props.counter);
-        if (this.props.arrayOfIdx.includes(value))
-            value = Math.floor(0 + Math.random() * ((this.state.images.length - 1) - 0));
-        if (this.props.counter === this.state.images.length) {
-            console.log("the end");
-            console.log(this.props.counter);
-        }
-        this.props.handler(value);
+        let arrayOfOpenIdx = new Array(this.state.images.length);
+        for (let i = 0; i < this.state.images.length; i++)
+            arrayOfOpenIdx[i] = i;
+        arrayOfOpenIdx = arrayOfOpenIdx.filter((el) => !this.props.arrayOfIdx.includes(el));
+        let randomIdx = Math.floor(0 + Math.random() * ((arrayOfOpenIdx.length) - 0));
+        let value = arrayOfOpenIdx[randomIdx];
+        this.props.handler(value, this.state.images.length);
         this.setState({
             image_id: value
         });
